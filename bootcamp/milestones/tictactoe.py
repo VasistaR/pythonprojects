@@ -2,8 +2,29 @@ choice = 0
 player1puck = "A"
 player2puck = "A"
 count = 0
+gamenotwon = True
+row1 = ["","",""]
+row2 = ["","",""]
+row3 = ["","",""]
+def checkgamewon():
+    if row1[0] == row1[1] and row1[1] == row1[2]:
+        gamenotwon = False
+    if row2[0] == row2[1] and row2[1] == row2[2]:
+        gamenotwon = False
+    if row3[0] == row3[1] and row3[1] == row3[2]:
+        gamenotwon = False
+    if row1[0] == row2[1] and row2[1] == row3[2]:
+        gamenotwon = False
+    if row3[0] == row2[1] and row2[1] == row1[2]:
+        gamenotwon = False
+    if row1[0] == row2[0] and row2[0] == row3[0]:
+        gamenotwon = False
+    if row1[1] == row2[1] and row2[1] == row3[1]:
+        gamenotwon = False
+    if row1[2] == row2[2] and row2[2] == row3[2]:
+        gamenotwon = False
 def move():
-    if player1orplayer2:
+    if player1orplayer2():
         if player1puck == "X":
             if choice == 1:
                 row3[0] = "X"
@@ -133,9 +154,6 @@ def player1orplayer2():
     else:
         return False
 def starttictactoe():
-    row1 = ["","",""]
-    row2 = ["","",""]
-    row3 = ["","",""]
     def printboard():
         print(row1)
         print("")
@@ -143,7 +161,10 @@ def starttictactoe():
         print("")
         print(row3)
     printboard()
-    choice = choice()
-    
-
+    while gamenotwon:
+        choice()
+        move()
+        checkgamewon()
+    if not gamenotwon:
+        print("Congratulations you won!")
 starttictactoe()
