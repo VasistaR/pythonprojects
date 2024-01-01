@@ -1,7 +1,12 @@
 def starttictactoe():
     choice = 0
-    player1puck = 5
+    player1puck = int(input("Player1, do you choose the X or the O? 1 for X and 2 for O: "))
     player2puck = 6
+    if player1puck == 1:
+            player2puck = 2
+    else:
+        player2puck = 1
+        player1puck = 2
     count = 0
     gamenotwon = True
     player1orplayer2 = True
@@ -14,13 +19,6 @@ def starttictactoe():
         print(row2)
         print("")
         print(row3)        
-    def x_or_o():
-        player1puck = int(input("Player1, do you choose the X or the O? 1 for X and 2 for O: "))
-        if player1puck == 1:
-            player2puck = 2
-        else:
-            player2puck = 1
-            player1puck = 2
     def move():
         if player1orplayer2:
             if player1puck == 1:
@@ -101,30 +99,29 @@ def starttictactoe():
                 if choice == 9:
                     row1[2] = "O"
     def checkgamewon():
-        if row1[0] == row1[1] and row1[1] == row1[2]:
+        if row1[0] == row1[1] == row1[2]:
             gamenotwon = False
-        if row2[0] == row2[1] and row2[1] == row2[2]:
+        if row2[0] == row2[1] == row2[2]:
             gamenotwon = False
-        if row3[0] == row3[1] and row3[1] == row3[2]:
+        if row3[0] == row3[1] == row3[2]:
             gamenotwon = False
-        if row1[0] == row2[1] and row2[1] == row3[2]:
+        if (row1[0] == row2[1] == row3[2]):
             gamenotwon = False
-        if row3[0] == row2[1] and row2[1] == row1[2]:
+        if row3[0] == row2[1] == row1[2]:
             gamenotwon = False
-        if row1[0] == row2[0] and row2[0] == row3[0]:
+        if row1[0] == row2[0] == row3[0]:
             gamenotwon = False
-        if row1[1] == row2[1] and row2[1] == row3[1]:
+        if row1[1] == row2[1] == row3[1]:
             gamenotwon = False
-        if row1[2] == row2[2] and row2[2] == row3[2]:
+        if row1[2] == row2[2] == row3[2]:
             gamenotwon = False
     printboard()
-    x_or_o()
     while gamenotwon:
         choice = int(input("Make a choice on the numpad: "))
         move()
         printboard()
-        player1orplayer2 = not player1orplayer2
         checkgamewon()
+        player1orplayer2 = not player1orplayer2
     if not gamenotwon:
         print("Congratulations you won!")
 starttictactoe()
